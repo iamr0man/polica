@@ -47,7 +47,7 @@ exports.doLogin = async(req, res) => {
             (err, token) => {
                 if(err, token) {
                     if(err) throw err;
-                    res.json({ token })
+                    res.json({ user, token })
                 }
             }
         )
