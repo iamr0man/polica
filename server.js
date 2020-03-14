@@ -6,9 +6,10 @@ const app = express();
 //Connect Database
 connectDB();
 
-//Body parser
+//Init Middleware
 app.use(express.json());
 
+app.use('/api/auth', require('./routes/api/auth'))
 app.use('/api/users', require('./routes/api/users'))
 
 const PORT = process.env.PORT || 5000;
