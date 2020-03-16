@@ -10,8 +10,11 @@
         <v-text-field outlined solo rounded flat type="password" label="password" v-model="password" />
       </v-card-text>
       <v-card-actions>
-          <v-btn @click="doLogin">Login</v-btn>
+          <v-btn @click="doLogin" class="mx-auto" dark width="85%" color="#000">Login</v-btn>
       </v-card-actions>
+      <v-card-text class="text-center">
+        <p>Not a member? <router-link class="reg-style" to="/registration">Join now</router-link></p>
+      </v-card-text>
     </v-card> 
   </div>
 </template>
@@ -49,5 +52,9 @@ export default {
 
   .book-img {
     width: 30px;
+  }
+
+  .v-application a {
+    color: #000;
   }
 </style>

@@ -1,4 +1,4 @@
-import { doLogin } from "../../services/user";
+import { registration ,doLogin } from "../../services/user";
 
 export default {
   namespaced: true,
@@ -12,10 +12,19 @@ export default {
     }
   },
   actions: {
+    async registration({ commit }, { email, name, password}) {
+      const { data } = await registration(email, name, password)
+
+      if(data) {
+        commit('SET_USER', data)
+      }
+    },
     async doLogin({ commit }, { email, password }) {
       const { data } = await doLogin(email, password);
       
-      commit('SET_USER', data)
+      if(data){
+        commit('SET_USER', data)
+      }
     }
   },
   getters: {}

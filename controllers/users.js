@@ -47,7 +47,8 @@ exports.createUser = async(req, res) => {
             {expiresIn: 360000},
             (err, token) => {
                 if(err) throw err;
-                res.json({ token })
+                user.token = token;
+                res.json({ user })
             }
         )
 
