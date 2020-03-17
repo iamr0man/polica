@@ -14,7 +14,7 @@
       </div>
       <div class="centered">
           <div class="centered triangle">
-            <router-link class="router-links" to="/">
+            <router-link class="router-links" to="/map">
               <p>points</p>
             </router-link>
           </div>
