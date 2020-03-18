@@ -1,7 +1,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const expeEntrySchema = new Schema({
+const requiredNumber = {
+  type: Number,
+  required: true,
+};
+
+const ExpeEntrySchema = new Schema({
     latitude: {
       ...requiredNumber,
       min: -90,
@@ -20,10 +25,14 @@ const expeEntrySchema = new Schema({
         type: String,
         required: true,
     },
+    emoji: {
+      type: String,
+      required: true
+    },
     data: {
         type: Date,
         default: Date.now
     }
 });
 
-module.exports = expeEntry = mongoose.model('expeEntry', expeEntrySchema);
+module.exports = Expe = mongoose.model('expes', ExpeEntrySchema);

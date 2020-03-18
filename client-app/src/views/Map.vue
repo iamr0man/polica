@@ -4,8 +4,8 @@
     :map-type-id="mapTypeId"
     :zoom="5">
       <GmapMarker 
-        v-for="(item, i) in markers"
-        :position="item.position"
+        v-for="(item, i) in points"
+        :position=" { lat: item.latitude, lng: item.longitude }"
         :key="item.position.lng + i"
         @click="toggleInfoWindow(item,i)"
       />
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
 
 export default {
   data(){
@@ -63,6 +65,12 @@ export default {
         this.currentMidx = idx;
       }
     }
+  },
+  mounted: {
+    ...mapGetters('data', ['points'])
+  },
+  async created(){
+    await this.$store.dispatch('data/getPoints', {}) 
   }
 }
 
