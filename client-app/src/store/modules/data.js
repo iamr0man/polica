@@ -6,20 +6,19 @@ export default {
     points: []
   },
   mutations: {
-    SET_POINS(state, payload) {
+    SET_POINTS(state, payload) {
       state.points = payload
     }    
   },
   actions: {
     async getPoints({ commit }) {
-      debugger
-      const points = await getPoints();
-      if(points){
-        commit('SET_POINTS', points)
+      const { data } = await getPoints();
+      if(data){
+        commit('SET_POINTS', data)
       }
     } 
   },
   getters: {
-    point: state => state.points
+    points: state => state.points
   }
 }

@@ -1,9 +1,7 @@
 import axios from "./instance";
 
-export const getPoint = async () => {
-  debugger
-  const ps = await axios.get('/expe/all')
-  return ps;
+export const getPoints = async () => {
+  return await axios.get('/expe/all')
 };
 
 export const createToken = async (latitude, longitude, title, description, emoji) => {
