@@ -4,6 +4,6 @@ export const getPoints = async () => {
   return await axios.get('/expe/all')
 };
 
-export const createToken = async (latitude, longitude, title, description, emoji) => {
+export const createPoint = async (latitude, longitude, title, description, emoji) => {
   return await axios.post('/expe', { latitude, longitude, title, description, emoji })
 };

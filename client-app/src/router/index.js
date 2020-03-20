@@ -37,16 +37,16 @@ const router = new VueRouter({
 });
 
 // eslint-disable-next-line
-// router.beforeEach((to, from, next) => {
-//   const publicPages = ['/login', '/registration']
-//   const authRequied = !publicPages.includes(to.path);
-//   const loggeIn = localStorage.getItem('token')
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/login', '/registration']
+  const authRequied = !publicPages.includes(to.path);
+  const loggeIn = localStorage.getItem('token')
 
-//   if(authRequied && !loggeIn) {
-//     next('/login')
-//   } else {
-//     next();
-//   }
-// })
+  if(authRequied && !loggeIn) {
+    next('/login')
+  } else {
+    next();
+  }
+})
 
 export default router;

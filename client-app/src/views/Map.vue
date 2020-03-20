@@ -1,19 +1,18 @@
 <template>
-  <GmapMap
-    v-if="points"
+  <gmap-map
     :center="center"
     :map-type-id="mapTypeId"
     :zoom="5"
-    @rightclick="mapRClick">
-      <GmapMarker 
+    @rightclick="showNewMarker">
+      <gmap-marker 
         v-for="(item, i) in points"
-        :position="{ lat: item.lat, lng: lng.item}"
-        :key="item.lng + i + item.lng"
+        :position="{ lat: item.latitude, lng: item.longitude }"
+        :key="i"
         @click="toggleInfoWindow(item,i)"
       />
-      <GmapInfoWindow
+      <gmap-info-window
         :options="{ pixelOffset, maxWidth }"
-        :position="infoWindow.position"
+        :position="{ lat: infoWindow.latitude, lng: infoWindow.longitude }"
         :opened="infoWinOpen"
         @closeclick="infoWinOpen=false"
       >
@@ -27,18 +26,20 @@
             <v-btn dark>!Like</v-btn>
           </v-card-actions>
         </v-card>
-      </GmapInfoWindow>
-      <GmapMarker
-        :position="newMarker.position"
-      />
-    </GmapMap>
+      </gmap-info-window>
+      <new-expe />
+    </gmap-map>
 </template>
 
 <script>
 
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
+import NewExpe from '../components/NewExpe.vue'
 
 export default {
+  components: {
+    NewExpe
+  },
   data(){
     return {
       center: { lat: 50, lng: 30 },
@@ -52,7 +53,6 @@ export default {
       currentMidx: null,
       pixelOffset: {height: '-3', width: 0},
       maxWidth: "300",
-      newMarker: { position: { lat: 0, lng: 0}}
     }
   },
   methods: {
@@ -67,15 +67,15 @@ export default {
         this.currentMidx = idx;
       }
     },
-    mapRClick(markerArgs){
+    showNewMarker(markerArgs){
       this.newMarker.position = markerArgs.latLng;
-      // console.log(markerArgs.latLng)
+      this.createWinOpen = true;
     },
   },
-  mounted: {
-    ...mapState('data', ['points'])
+  computed: {
+    ...mapGetters('data', ['points'])
   },
-  async beforeCreate(){
+  async created(){
     await this.$store.dispatch('data/getPoints') 
   }
 }
