@@ -10,24 +10,15 @@
         :key="i"
         @click="toggleInfoWindow(item,i)"
       />
-      <gmap-info-window
-        v-if="infoWinOpen"
-        :options="{ pixelOffset, maxWidth }"
-        :position="{ lat: infoWindow.latitude, lng: infoWindow.longitude }"
-        :opened="infoWinOpen"
-        @closeclick="infoWinOpen=false"
-      >
-        <v-card>
-          <v-card-text>
-            <h1>{{ infoWindow.title }}</h1>
-            <p>{{ infoWindow.description }}</p>
-            <p>{{ infoWindow.emoji }}</p>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn dark>!Like</v-btn>
-          </v-card-actions>
-        </v-card>
-      </gmap-info-window>
+      <router-link to="{ name: 'Expe', params: { id: infoWindow._id }}">
+        <expe
+          v-if="infoWinOpen"
+          @isInfoWinOpen="infoWinOpen = $event"
+          :infoWindow="infoWindow"
+          :infoWinOpen="infoWinOpen"
+        />
+      </router-link>
+      <router-view></router-view>
       <new-expe
         v-if="createWinOpen"
         @isCreatedWinOpen="createWinOpen = $event"
@@ -40,10 +31,12 @@
 
 import { mapGetters } from 'vuex'
 import NewExpe from '../components/NewExpe.vue'
+import Expe from '../components/Expe.vue'
 
 export default {
   components: {
-    NewExpe
+    NewExpe,
+    Expe
   },
   data(){
     return {
@@ -74,9 +67,13 @@ export default {
       this.newMarker.position = { lat: markerArgs.latLng.lat(), lng: markerArgs.latLng.lng() };
       this.createWinOpen = true;
     },
+    async deletePoint(id){
+      await this.$store.dispatch('data/deletePoint', { id }) 
+    }
   },
   computed: {
-    ...mapGetters('data', ['points'])
+    ...mapGetters('data', ['points']),
+    ...mapGetters('user', ['user']),
   },
   async created(){
     await this.$store.dispatch('data/getPoints') 

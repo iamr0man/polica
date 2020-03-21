@@ -1,7 +1,7 @@
 <template>
   <div class="expe-form-container">
     <v-form
-      @submit="createExpe">
+      @submit="createPoint">
       <v-card width="300">
         <v-card-text>
           <h2>Describe your place:</h2>
@@ -47,8 +47,8 @@ export default {
     }
   },
   methods: {
-    async createExpe(){
-      await this.$store.dispatch('data/createExpe', { 
+    async createPoint(){
+      await this.$store.dispatch('data/createPoint', { 
         latitude: this.latitude,
         longitude: this.longitude,
         title: this.title,

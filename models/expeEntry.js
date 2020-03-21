@@ -7,6 +7,10 @@ const requiredNumber = {
 };
 
 const ExpeEntrySchema = new Schema({
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    },
     latitude: {
       ...requiredNumber,
       min: -90,
@@ -29,6 +33,14 @@ const ExpeEntrySchema = new Schema({
       type: String,
       required: true
     },
+    likes: [
+      {
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+        }
+      }
+  ],
     data: {
         type: Date,
         default: Date.now

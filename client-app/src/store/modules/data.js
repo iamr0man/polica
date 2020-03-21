@@ -1,18 +1,14 @@
-import { getPoints, createPoint } from '../../services/data'
+import { getPoints, createPoint, deletePoint } from '../../services/data'
 
 export default {
   namespaced: true,
   state: {
     points: [],
-    point: {}
   },
   mutations: {
     SET_POINTS(state, payload) {
       state.points = payload
-    },    
-    SET_POINT(state, payload) {
-      state.point = payload
-    }    
+    }  
   },
   actions: {
     async getPoints({ commit }) {
@@ -21,15 +17,16 @@ export default {
         commit('SET_POINTS', data)
       }
     },
-    async createExpe({ commit }, {latitude, longitude, title, describe, emoji}) {
-      const { data } = await createPoint(latitude, longitude, title, describe, emoji)
-      if(data) {
-        commit('SET_POINT', data)
-      }
-    } 
+    // eslint-disable-next-line
+    async createPoint({ commit }, {latitude, longitude, title, describe, emoji}) {
+      await createPoint(latitude, longitude, title, describe, emoji)
+    },
+    // eslint-disable-next-line
+    async deletePoint({ commit }, {id}) {
+      await deletePoint(id);
+    }, 
   },
   getters: {
     points: state => state.points,
-    point: state => state.point,
   }
 }

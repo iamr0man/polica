@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Registration from "../views/Registration.vue";
 import Map from "../views/Map.vue";
+import Expe from "../components/Expe.vue";
 
 Vue.use(VueRouter);
 
@@ -26,7 +27,13 @@ const routes = [
   {
     path: "/map",
     name: "Map",
-    component: Map
+    component: Map,
+    children: [
+      {
+        path: "expe/:id",
+        component: Expe
+      },
+    ]
   },
 ];
 
