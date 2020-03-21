@@ -1,5 +1,4 @@
-import userApi from "./user";
+import UserApi from "./user";
+import DataApi from "./data";
 
-export default {
-  userApi
-};
+export { UserApi, DataApi };

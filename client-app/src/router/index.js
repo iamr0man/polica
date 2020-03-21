@@ -31,7 +31,8 @@ const routes = [
     children: [
       {
         path: "expe/:id",
-        component: Expe
+        component: Expe,
+        name: "Expe"
       },
     ]
   },

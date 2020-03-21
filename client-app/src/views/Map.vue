@@ -10,15 +10,12 @@
         :key="i"
         @click="toggleInfoWindow(item,i)"
       />
-      <router-link to="{ name: 'Expe', params: { id: infoWindow._id }}">
-        <expe
-          v-if="infoWinOpen"
-          @isInfoWinOpen="infoWinOpen = $event"
-          :infoWindow="infoWindow"
-          :infoWinOpen="infoWinOpen"
-        />
-      </router-link>
-      <router-view></router-view>
+      <expe
+        v-if="infoWinOpen"
+        @isInfoWinOpen="infoWinOpen = $event"
+        :infoWindow="infoWindow"
+        :infoWinOpen="infoWinOpen"
+      />
       <new-expe
         v-if="createWinOpen"
         @isCreatedWinOpen="createWinOpen = $event"
@@ -62,6 +59,7 @@ export default {
         this.infoWinOpen = true;
         this.currentMidx = idx;
       }
+      this.$router.push({ name: 'Expe', params: { id: this.infoWindow._id }})
     },
     showNewMarker(markerArgs){
       this.newMarker.position = { lat: markerArgs.latLng.lat(), lng: markerArgs.latLng.lng() };

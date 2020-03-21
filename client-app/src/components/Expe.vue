@@ -29,11 +29,9 @@ export default {
   props: {
     infoWindow: {
       type: Object,
-      required: true
     },
     infoWinOpen: {
       type: Boolean,
-      required: true
     }
   },
   data(){
@@ -45,6 +43,10 @@ export default {
   methods: {
     closeInfoWin(){
       this.$emit('isInfoWinOpen', false)
+      this.$router.push({ name: 'Map'})
+    },
+    async deletePoint(id){
+      await this.$store.dispatch('data/deletePoint', { id})
     }
   },
   computed: {

@@ -1,11 +1,11 @@
-import { registration ,doLogin } from "../../services/user";
+import { UserApi } from "../../services/index";
 import router from '../../router/index'
 
 export default {
   namespaced: true,
 
   state: {
-    user: [],
+    user: {},
   },
   mutations: {
     SET_USER(state, payload) {
@@ -13,8 +13,18 @@ export default {
     },
   },
   actions: {
+    async getUser({ commit, getters }){
+      if(Object.entries(getters.user).length){
+        return getters.user;
+      }
+
+      const { data } = await UserApi.getUser()
+      if(data){
+        commit('SET_USER', data)
+      }
+    },
     async registration({ commit }, { email, name, password}) {
-      const { data } = await registration(email, name, password)
+      const { data } = await UserApi.registration(email, name, password)
 
       if(data) {
         commit('SET_USER', data.user)
@@ -23,7 +33,7 @@ export default {
       }
     },
     async doLogin({ commit }, { email, password }) {
-      const { data } = await doLogin(email, password);
+      const { data } = await UserApi.doLogin(email, password);
       
       if(data){
         commit('SET_USER', data.user)

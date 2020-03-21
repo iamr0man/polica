@@ -23,10 +23,10 @@ router.post('/', [
   check("emoji", ""),
 ], createPoint)
 
-//@route    DELETE api/expe
+//@route    DELETE api/expe/:id
 //@desc     Delete info window
 //@access   Private
-router.delete('/', [
+router.delete('/:id', [
   auth,
   check("id", ""),
 ], deletePoint)

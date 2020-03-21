@@ -45,18 +45,18 @@ exports.deletePoint = async(req, res) =>{
   }
 
   try{
-    // const expe = await Expe.findById(req.params.id)
+    const expe = await Expe.findById(req.params.id)
 
-    // if (!post) {
-    //     return res.status(404).json({ msg: 'Post not found' })
-    // }
-    // if (post.user.toString() !== req.user.id) {
-    //     return res.status(401).json({ msg: 'User not authorized' })
-    // }
+    if (!expe) {
+        return res.status(404).json({ msg: 'Expe not found' })
+    }
+    if (expe.user.toString() !== req.user.id) {
+        return res.status(401).json({ msg: 'User not authorized' })
+    }
 
-    // await post.remove()
+    await expe.remove()
 
-    res.json({ msg: 'Post removed' })
+    res.json({ msg: 'Expe removed' })
   } catch (err) {
     console.error(err.message)
     res.status(500).send('Server error')

@@ -1,9 +1,13 @@
 import axios from "./instance";
 
-export const doLogin = async (email, password) => {
-  return await axios.post('/auth', { email, password})
-};
-
-export const registration = async (email, name, password) => {
-  return await axios.post('/users', { email, name, password})
-};
+export default {
+  async getUser () {
+    return await axios.get('/auth')
+  },
+  async doLogin (email, password){
+    return await axios.post('/auth', { email, password})
+  },
+  async registration (email, name, password) {
+    return await axios.post('/users', { email, name, password})
+  }
+}

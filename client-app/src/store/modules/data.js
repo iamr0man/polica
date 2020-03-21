@@ -1,4 +1,5 @@
-import { getPoints, createPoint, deletePoint } from '../../services/data'
+import { DataApi} from '../../services/index'
+import router from '../../router/index'
 
 export default {
   namespaced: true,
@@ -12,18 +13,19 @@ export default {
   },
   actions: {
     async getPoints({ commit }) {
-      const { data } = await getPoints();
+      const { data } = await DataApi.getPoints();
       if(data){
         commit('SET_POINTS', data)
       }
     },
     // eslint-disable-next-line
     async createPoint({ commit }, {latitude, longitude, title, describe, emoji}) {
-      await createPoint(latitude, longitude, title, describe, emoji)
+      await DataApi.createPoint(latitude, longitude, title, describe, emoji)
     },
     // eslint-disable-next-line
     async deletePoint({ commit }, {id}) {
-      await deletePoint(id);
+      await DataApi.deletePoint(id);
+      router.push({name: "Map"})
     }, 
   },
   getters: {
