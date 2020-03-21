@@ -16,10 +16,11 @@ module.exports = router;
 //@desc     Create info window
 //@access   Public
 router.post('/', [
-  check("latitude", "").not().isEmpty(),
-  check("longitude", "").not().isEmpty(),
-  check("title", "").not().isEmpty(),
-  check("description", "").not().isEmpty(),
+  check("latitude", ""),
+  check("longitude", ""),
+  check("title", ""),
+  check("description", ""),
+  check("emoji", ""),
 ], createPoint)
 
 module.exports = router;

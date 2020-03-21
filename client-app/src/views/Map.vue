@@ -11,6 +11,7 @@
         @click="toggleInfoWindow(item,i)"
       />
       <gmap-info-window
+        v-if="infoWinOpen"
         :options="{ pixelOffset, maxWidth }"
         :position="{ lat: infoWindow.latitude, lng: infoWindow.longitude }"
         :opened="infoWinOpen"
@@ -27,7 +28,11 @@
           </v-card-actions>
         </v-card>
       </gmap-info-window>
-      <new-expe />
+      <new-expe
+        v-if="createWinOpen"
+        @isCreatedWinOpen="createWinOpen = $event"
+        :newMarker="newMarker"
+        :createWinOpen="createWinOpen" />
     </gmap-map>
 </template>
 
@@ -44,11 +49,9 @@ export default {
     return {
       center: { lat: 50, lng: 30 },
       mapTypeId: "terrain",
-      markers: [
-        { title: "Near Silver Breez", position: { lat: 50.48585, lng: 29.1466 }, description: "Latest autumn, when was not very cold, because winter couldn't chill me! So near also we have river, called Dnipro, wide Dnipro... Return to my experience to read in this atmosfere: people go around, ride on cycle and etc. Not very traffic place, i do know", emoji: '😜'},
-        { title: "Near Silver Breez", position: { lat: 45.9127778, lng: 32.6205556 }, description: "Latest autumn, when was not very cold, because winter couldn't chill me! So near also we have river, called Dnipro, wide Dnipro... Return to my experience to read in this atmosfere: people go around, ride on cycle and etc. Not very traffic place, i do know", emoji: '😜'},
-      ],
       infoWindow: {},
+      newMarker: { position: { lat: 0, lng: 0}},
+      createWinOpen: false,
       infoWinOpen: false,
       currentMidx: null,
       pixelOffset: {height: '-3', width: 0},
@@ -68,7 +71,7 @@ export default {
       }
     },
     showNewMarker(markerArgs){
-      this.newMarker.position = markerArgs.latLng;
+      this.newMarker.position = { lat: markerArgs.latLng.lat(), lng: markerArgs.latLng.lng() };
       this.createWinOpen = true;
     },
   },

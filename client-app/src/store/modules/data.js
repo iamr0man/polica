@@ -21,8 +21,8 @@ export default {
         commit('SET_POINTS', data)
       }
     },
-    async createExpe({ commit }, {title, describe, emoji}) {
-      const { data } = await createPoint(title, describe, emoji)
+    async createExpe({ commit }, {latitude, longitude, title, describe, emoji}) {
+      const { data } = await createPoint(latitude, longitude, title, describe, emoji)
       if(data) {
         commit('SET_POINT', data)
       }

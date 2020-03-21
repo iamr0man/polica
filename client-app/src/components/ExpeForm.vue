@@ -29,6 +29,16 @@
 <script>
 export default {
   name: "ExpeForm",
+  props: {
+    latitude: {
+      type: Number,
+      required: true
+    },
+    longitude: {
+      type: Number,
+      required: true
+    },
+  },
   data(){
     return {
       title: "",
@@ -38,7 +48,13 @@ export default {
   },
   methods: {
     async createExpe(){
-      await this.$store.dispatch('data/createExpe', { title: this.title, describe: this.describe, emoji: this.emoji})
+      await this.$store.dispatch('data/createExpe', { 
+        latitude: this.latitude,
+        longitude: this.longitude,
+        title: this.title,
+        describe: this.describe,
+        emoji: this.emoji}
+      )
     }
   }
 };

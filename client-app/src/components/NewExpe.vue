@@ -9,7 +9,10 @@
       :opened="createWinOpen"
       @closeclick="removeCreateMarker"
     >
-      <expe-form />
+      <expe-form
+        :latitude="newMarker.position.lat"
+        :longitude="newMarker.position.lng"
+      />
     </gmap-info-window> 
   </div> 
 </template>
@@ -20,19 +23,28 @@ import ExpeForm from './ExpeForm.vue'
 
 export default {
   components: {
-    ExpeForm
+    ExpeForm 
+  },
+  props: {
+    newMarker: {
+      type: Object,
+      required: true,
+    },
+    createWinOpen: {
+      type: Boolean,
+      required: true,
+    },
   },
   data(){
     return {
-      newMarker: { position: { lat: 0, lng: 0}},
       pixelOffset: {height: '-3', width: 0},
-      createWinOpen: false,
+      maxWidth: "300",
     }
   },
   methods: {
     removeCreateMarker(){
       this.newMarker.position = null;
-      this.createWinOpen = false;
+      this.$emit('isCreatedWinOpen', false);
     }
   }
 }
