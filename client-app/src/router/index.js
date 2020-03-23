@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Registration from "../views/Registration.vue";
 import Map from "../views/Map.vue";
 import Expe from "../components/Expe.vue";
+import Forum from "../views/Forum.vue";
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,14 @@ const routes = [
       },
     ]
   },
+  {
+    path: "/forum",
+    name: "Forum",
+    component: Forum
+  },
+  {
+    path: "*", component: Login
+  }
 ];
 
 const router = new VueRouter({

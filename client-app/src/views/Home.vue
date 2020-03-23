@@ -7,7 +7,7 @@
             </router-link>
           </div>
           <div class="centered rectangle">
-            <router-link class="router-links" to="/">
+            <router-link class="router-links" to="/forum">
               <p>forum</p>
             </router-link>
           </div>

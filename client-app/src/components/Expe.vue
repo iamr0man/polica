@@ -7,15 +7,17 @@
   >
     <v-card>
       <v-card-text>
-        <h1>{{ infoWindow.title }}</h1>
+        <h1 class="mb-6">{{ infoWindow.title }}</h1>
         <p>{{ infoWindow.description }}</p>
         <p>{{ infoWindow.emoji }}</p>
       </v-card-text>
       <v-card-actions>
-        <v-btn dark>!Like</v-btn>
         <v-btn v-if="user && user._id === infoWindow.user" dark>!Edit</v-btn>
         <v-btn v-if="user && user._id === infoWindow.user" dark @click="deletePoint(infoWindow._id)">!Delete</v-btn>
       </v-card-actions>
+      <v-card-text>
+        <v-icon>mdi-thumb-up-outline</v-icon>
+      </v-card-text>
     </v-card>
   </gmap-info-window>
 </template>

@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "concurrently \"nodemon server\" \"yarn --cwd ./client-app serve\""
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.0",
@@ -8,5 +11,8 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.4"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   }
 }
