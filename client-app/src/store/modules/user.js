@@ -42,9 +42,11 @@ export default {
       }
       router.push
     },
+    // eslint-disable-next-line
     logout({ commit }) {
       commit('SET_USER', {})
       localStorage.removeItem('user')
+      router.push('/login')
     }
   },
   getters: {

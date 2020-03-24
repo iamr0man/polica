@@ -37,6 +37,46 @@ exports.createPoint = async(req, res) => {
     }
 }
 
+exports.likeExpe = async (req, res) => {
+  try {
+      const expe = await Expe.findById(req.params.id)
+
+      if (expe.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+          return res.status(400).json({ msg: 'Expe already liked' })
+      }
+
+      expe.likes.unshift({ user: req.user.id })
+
+      await expe.save();
+
+      res.json(expe.likes)
+  } catch (error) {
+      console.error(err.message)
+      res.status(500).send('Server error')
+  }
+}
+
+exports.unlikeExpe = async (req, res) => {
+  try {
+      const expe = await Expe.findOne({ _id: req.params.id })
+
+      if (expe.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+          return res.status(400).json({ msg: 'Expe has not been liked' })
+      }
+
+      const removeIndex = expe.likes.map(like => like.user.toString()).indexOf(req.user.id);
+
+      expe.likes.splice(removeIndex, 1)
+
+      await expe.save();
+
+      res.json(expe.likes)
+  } catch (error) {
+      console.error(err.message)
+      res.status(500).send('Server error')
+  }
+}
+
 exports.deletePoint = async(req, res) =>{
 
   const errors = validationResult(req);

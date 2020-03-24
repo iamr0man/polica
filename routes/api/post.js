@@ -12,15 +12,14 @@ const { getAllPosts, createPost, deletePost } =  require('../../controllers/post
 router.get('/all', getAllPosts)
 
 //@route    POST api/post
-//@desc     Create info window
-//@access   Public
+//@desc     Create post
+//@access   Private
+
 router.post('/', [
   auth,
-  check("latitude", ""),
-  check("longitude", ""),
   check("title", "").not().isEmpty(),
-  check("description", ""),
-  check("emoji", ""),
+  check("text", "").not().isEmpty(),
+  check("name", ""),
 ], createPost)
 
 //@route    DELETE api/post/:id

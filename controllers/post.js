@@ -15,19 +15,22 @@ exports.getAllPosts = async(req, res) => {
 exports.createPost = async(req, res) => {
   
   const errors = validationResult(req);
+  console.log(errors)
   if(!errors.isEmpty()){
     return res.status(400).json({ errors: errors.array() })
   }
   
-  const { text, name, likes } = req.body;
+  const { title, text, name } = req.body;
+  console.log(req.body)
   try{
+    console.log(req.user.id)
     const user = await User.findById(req.user.id).select('-password') 
     const newPost = await Expe.create({
       user: user.id,
+      title,
       text,
       name,
       avatar: user.avatar,
-      likes
     });
     res.status(201).json({ newPost });
     } catch (err) {

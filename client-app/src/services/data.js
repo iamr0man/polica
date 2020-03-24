@@ -7,7 +7,12 @@ export default {
   async createPoint (latitude, longitude, title, description, emoji){
     return await axios.post('/expe', { latitude, longitude, title, description, emoji })
   },
-  // eslint-disable-next-line
+  async likePoint (id){
+    return await axios.put(`/expe/like/${id}`)
+  },
+  async unlikePoint (id){
+    return await axios.put(`/expe/unlike/${id}`)
+  },
   async deletePoint (id) {
     return await axios.delete(`/expe/${id}`)
   },

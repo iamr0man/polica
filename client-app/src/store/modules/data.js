@@ -23,6 +23,14 @@ export default {
       await DataApi.createPoint(latitude, longitude, title, describe, emoji)
     },
     // eslint-disable-next-line
+    async likePoint({ commit }, {id}) {
+      await DataApi.likePoint(id);
+    },
+    // eslint-disable-next-line
+    async unlikePoint({ commit }, {id}) {
+      await DataApi.unlikePoint(id);
+    },
+    // eslint-disable-next-line
     async deletePoint({ commit }, {id}) {
       await DataApi.deletePoint(id);
       router.push({name: "Map"})

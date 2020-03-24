@@ -16,7 +16,10 @@
         <v-btn v-if="user && user._id === infoWindow.user" dark @click="deletePoint(infoWindow._id)">!Delete</v-btn>
       </v-card-actions>
       <v-card-text>
-        <v-icon>mdi-thumb-up-outline</v-icon>
+        <v-btn type="button" @click="likePoint">
+          <v-icon class="thumb-up">mdi-thumb-up-outline</v-icon>
+          <span>{{ infoWindow.likes.length ? infoWindow.likes.length : null }}</span>
+        </v-btn>
       </v-card-text>
     </v-card>
   </gmap-info-window>
@@ -49,6 +52,9 @@ export default {
     },
     async deletePoint(id){
       await this.$store.dispatch('data/deletePoint', { id})
+    },
+    async likePoint(){
+      await this.$store.dispatch('data/likePoint', { id: this.$route.params.id })
     }
   },
   computed: {
@@ -59,5 +65,7 @@ export default {
 </script>
 
 <style>
-
+  .thumb-up {
+    cursor: pointer;
+  }
 </style>

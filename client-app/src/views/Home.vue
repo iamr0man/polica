@@ -19,12 +19,17 @@
             </router-link>
           </div>
       </div>
+      <!-- <div class="logout" @click="logout">out!</div> -->
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
-  name: "Home"
+  name: "Home",
+  computed: {
+    ...mapActions('user', ['logout'])
+  }
 };
 </script>
 
@@ -80,5 +85,15 @@ body {
   text-decoration: none;
   font-size: 20px;
   text-transform: uppercase;
+}
+
+.logout {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  color: white; 
+  margin: 1rem;
+  cursor: pointer;
 }
 </style>

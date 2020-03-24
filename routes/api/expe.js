@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth')  
 const { check } = require('express-validator')
 
-const { getAllPoints,createPoint,deletePoint } =  require('../../controllers/expe') 
+const { getAllPoints,createPoint, likeExpe, unlikeExpe, deletePoint } =  require('../../controllers/expe') 
 
 //@route    GET api/expe/all
 //@desc     Get all points
@@ -22,6 +22,16 @@ router.post('/', [
   check("description", ""),
   check("emoji", ""),
 ], createPoint)
+
+//@route    PUT api/expe/like/:id
+//@desc     Like expe    
+//@access   Private
+router.put('/like/:id', auth, likeExpe)
+
+//@route    PUT api/expe/unlike/:id
+//@desc     Unlike expe    
+//@access   Private
+router.put('/unlike/:id', auth, unlikeExpe)
 
 //@route    DELETE api/expe/:id
 //@desc     Delete info window
