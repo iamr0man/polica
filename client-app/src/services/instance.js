@@ -1,5 +1,7 @@
 import axios from "axios";
+import router from '../router/index'
 
+debugger
 const apiClient = axios.create({
   baseURL: `http://localhost:5000/api`,
   withCredentials: false, // This is the default
@@ -11,10 +13,13 @@ const apiClient = axios.create({
   }
 });
 
-apiClient.interceptors.response.use(function (response) {
-  return response;
-}, function (error) {
-  return Promise.reject(error);
+apiClient.interceptors.response.use(response => {
+   return response;
+}, error => {
+  if (error.response.status === 401) {
+    router.push('/login')
+  }
+  return error;
 });
 
 export default apiClient;

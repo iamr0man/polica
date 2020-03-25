@@ -21,6 +21,11 @@
         @isCreatedWinOpen="createWinOpen = $event"
         :newMarker="newMarker"
         :createWinOpen="createWinOpen" />
+      <v-btn type="button" class="button-back">
+        <router-link to="/" class="arrow-back">
+          <v-icon>mdi-arrow-collapse-left</v-icon>
+        </router-link>
+      </v-btn>
     </gmap-map>
 </template>
 
@@ -87,5 +92,15 @@ export default {
   }
   .window {
     width: 30%;
+  }
+
+  .button-back{
+    position: fixed;
+    top: 60px;
+    left: 18px;
+  }
+
+  .arrow-back {
+    color: black !important;
   }
 </style>

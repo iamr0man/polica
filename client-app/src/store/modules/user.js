@@ -45,7 +45,7 @@ export default {
     // eslint-disable-next-line
     logout({ commit }) {
       commit('SET_USER', {})
-      localStorage.removeItem('user')
+      localStorage.removeItem('token')
       router.push('/login')
     }
   },

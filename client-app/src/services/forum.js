@@ -4,8 +4,8 @@ export default {
   async getPosts () {
     return await axios.get('/post/all')
   },
-  async createPost (){
-    return await axios.post('/post', { })
+  async createPost (name, title, description){
+    return await axios.post('/post', {name, title, description})
   },
   // eslint-disable-next-line
   async deletePost (id) {

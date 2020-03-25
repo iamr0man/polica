@@ -18,7 +18,7 @@ router.get('/all', getAllPosts)
 router.post('/', [
   auth,
   check("title", "").not().isEmpty(),
-  check("text", "").not().isEmpty(),
+  check("description", "").not().isEmpty(),
   check("name", ""),
 ], createPost)
 

@@ -31,11 +31,15 @@ export default {
     async doLogin(){
       return await this.$store.dispatch('user/doLogin', { email: this.email, password: this.password})
     }
+  },
+  created(){
+    this.email = 'k@g.com',
+    this.password = 'simple'
   }
 };
 </script>
 
-<style>
+<style scoped>
   .login-container {
     width: 100vw;
     height: 100vh;

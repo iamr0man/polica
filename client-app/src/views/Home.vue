@@ -19,16 +19,17 @@
             </router-link>
           </div>
       </div>
-      <!-- <div class="logout" @click="logout">out!</div> -->
+      <div class="logout" @click="logout">out!</div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 export default {
   name: "Home",
-  computed: {
-    ...mapActions('user', ['logout'])
+  methods: {
+    async logout(){
+      await this.$store.dispatch('user/logout')
+    }
   }
 };
 </script>

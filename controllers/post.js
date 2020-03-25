@@ -20,15 +20,15 @@ exports.createPost = async(req, res) => {
     return res.status(400).json({ errors: errors.array() })
   }
   
-  const { title, text, name } = req.body;
+  const { title, description, name } = req.body;
   console.log(req.body)
   try{
     console.log(req.user.id)
     const user = await User.findById(req.user.id).select('-password') 
-    const newPost = await Expe.create({
+    const newPost = await Post.create({
       user: user.id,
       title,
-      text,
+      description,
       name,
       avatar: user.avatar,
     });

@@ -3,8 +3,8 @@
     <v-card width="800" class="mx-auto">
       <div class="square"></div>
     </v-card>
-    <router-link to="/" class="create-new">
-      Create new Post
+    <router-link to="/forum/new" class="create-new">
+      <v-icon>mdi-book-plus</v-icon> Add
     </router-link>
   </div>
 </template>
@@ -33,10 +33,11 @@ export default {
 
   .create-new {
     position: fixed;
-    bottom: 44px; /* <--- set to zero, 1em = the inherited font size, which will offset it */
+    bottom: 44px;
     right: 33px;
-    width: 400px;
-    height: 100px;
+    border-radius: 30px;
+    width: 300px;
+    height: 70px;
     background-color: teal;
 
     line-height: 94px;
