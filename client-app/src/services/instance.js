@@ -1,7 +1,6 @@
 import axios from "axios";
 import router from '../router/index'
 
-debugger
 const apiClient = axios.create({
   baseURL: `http://localhost:5000/api`,
   withCredentials: false, // This is the default

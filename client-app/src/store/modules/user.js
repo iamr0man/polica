@@ -37,6 +37,7 @@ export default {
       
       if(data){
         commit('SET_USER', data.user)
+        localStorage.setItem('token', '')
         localStorage.setItem('token', data.token)
         router.push('/')
       }

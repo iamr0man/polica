@@ -1,10 +1,16 @@
 <template>
   <div>
     <v-card width="800" class="mx-auto">
-      <div class="square"></div>
+      <v-card-text>
+        <post
+          v-for="(post, i) in posts"
+          :post="post"
+          :key="i"/>
+      </v-card-text>
     </v-card>
-    <router-link to="/forum/new" class="create-new">
-      <v-icon>mdi-book-plus</v-icon> Add
+    <router-link :to="{ name: 'PostForm' }">
+      <!-- <v-icon>mdi-book-plus</v-icon>  -->
+      Add
     </router-link>
   </div>
 </template>
@@ -12,8 +18,13 @@
 <script>
 
 import { mapGetters } from 'vuex'
+import Post from '../components/Post.vue'
 
 export default {
+  name: 'Forum',
+  components: {
+    Post
+  },
   computed: {
     ...mapGetters('forum', ['posts'])
   },

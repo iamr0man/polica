@@ -1,30 +1,37 @@
 <template>
-  <v-card>
-    <v-card-text>
-      <div class="card-info">
-        <div class="card-info__photo">
-          <v-img :src="post.avatar" alt="icon">
-        </div>
-        <div class="card-info__details">
-          <router-link to="/">{{ post.name }}</router-link>
-          <p>{{ post.date }}</p>
-        </div>
-      </div>
-    </v-card-text>
-    <v-card-actions>
-      <v-icon>
-        thumb-up-outline
-      </v-icon>
-    </v-card-actions>
-  </v-card>  
+  <router-link :to="{ name: 'PostDetails', params: { id: post._id }}">
+    <v-card class="post">
+      <v-card-text>
+        <v-row>
+          <v-col cols="8">
+            <div class="card-info">
+              <div class="card-info__top">
+                <h2 class="top-title">{{ post.title}}</h2>            
+                <p class="top-shortDescription">{{ post.shortDescription }}</p>           
+              </div>
+              <div class="card-info__bottom">
+                <h4 class="bottom-name">{{ post.name }}</h4>
+                <h4 class="bottom-date">{{ new Date(post.date).toLocaleDateString() }}</h4>
+              </div>
+            </div>
+          </v-col>
+          <v-col cols="4">
+            <div class="card-photo">
+              <v-img src="../assets/img/post.jpg" />
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+  </router-link>  
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: "Comments",
+  name: "Post",
   props: {
-    client: {
+    post: {
       type: Object,
       required: true
     }
@@ -35,6 +42,23 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  
+  .v-application a {
+    color: black !important;
+  }
 
+  .post {
+    .card-info {
+      height: 100%;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      .top-title {
+        font-size: 30px;
+      }
+    }
+  }
 </style>

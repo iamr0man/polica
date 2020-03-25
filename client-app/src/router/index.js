@@ -7,6 +7,7 @@ import Map from "../views/Map.vue";
 import Expe from "../components/Expe.vue";
 import Forum from "../views/Forum.vue";
 import PostForm from "../views/PostForm.vue";
+import PostDetails from "../components/PostDetails.vue";
 
 Vue.use(VueRouter);
 
@@ -42,6 +43,11 @@ const routes = [
     path: "/forum",
     name: "Forum",
     component: Forum,
+  },
+  {
+    path: "/post/:id",
+    component: PostDetails,
+    name: "PostDetails"
   },
   {
     path: '/forum/new',
