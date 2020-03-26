@@ -11,7 +11,7 @@ export default {
       state.posts = payload
     },
     SET_POST(state, payload) {
-      state.posts = payload
+      state.post = payload
     },
   },
   actions:{
@@ -29,6 +29,7 @@ export default {
     },
   },
   getters: {
-    posts: state => state.posts
+    posts: state => state.posts,
+    post: state => state.post,
   }
 }

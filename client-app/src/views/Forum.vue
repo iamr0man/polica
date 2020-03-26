@@ -8,8 +8,7 @@
           :key="i"/>
       </v-card-text>
     </v-card>
-    <router-link :to="{ name: 'PostForm' }">
-      <!-- <v-icon>mdi-book-plus</v-icon>  -->
+    <router-link :to="{ name: 'PostForm' }" class="add-new">
       Add
     </router-link>
   </div>
@@ -56,5 +55,11 @@ export default {
     text-decoration: none;
     text-align: center;
     color: white !important;
+  }
+
+  .add-new {
+    position: fixed;
+    bottom: 1px;
+    right: 5px;
   }
 </style>

@@ -15,7 +15,7 @@
       <div class="centered">
           <div class="centered triangle">
             <router-link class="router-links" to="/map">
-              <p>points</p>
+              <p class="router-links-points">points</p>
             </router-link>
           </div>
       </div>
@@ -86,6 +86,12 @@ body {
   text-decoration: none;
   font-size: 20px;
   text-transform: uppercase;
+
+  &-points {
+    position: relative;
+    top: 95px;
+    left: 39px;
+  }
 }
 
 .logout {
