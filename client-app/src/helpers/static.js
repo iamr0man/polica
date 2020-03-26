@@ -1507,4 +1507,4 @@ mdi-xml
 mdi-yeast
 mdi-yelp
 mdi-youtube-play
-mdi-zip-box`.split(' ');
+mdi-zip-box`.split('\n');

@@ -6,8 +6,15 @@
          outlined
          solo
          flat
-         label="title"
+         label="Title"
          v-model="title"
+         />
+        <v-text-field 
+         outlined
+         solo
+         flat
+         label="Short Description"
+         v-model="shortDescription"
          />
         <v-textarea 
          outlined
@@ -16,13 +23,33 @@
          :auto-grow="true"
          :clearable="true"
          :rows="15"
-         label="description"
+         label="Description"
          v-model="description"
          />
       </v-card-text>
       <v-card-actions>
-          <v-btn @click="registration" class="mx-auto" dark width="85%" color="#000">Post</v-btn>
+          <v-btn @click="registration" class="mx-auto" color="indigo" dark width="85%">Post</v-btn>
       </v-card-actions>
+    </v-card> 
+    <v-card shaped class="card" width="700">
+      <v-icon class="cloud-upload" color="indigo">mdi-cloud-upload</v-icon>
+      <v-file-input
+        v-model="files"
+        placeholder="Upload your preview photo"
+        label="Photo input"
+        multiple
+        prepend-icon="mdi-paperclip"
+      >
+      <template v-slot:selection="{ text }">
+          <v-chip
+            small
+            label
+            color="primary"
+          >
+          {{ text }}
+        </v-chip>
+      </template>
+    </v-file-input>
     </v-card> 
   </div>
 </template>
@@ -35,6 +62,8 @@ export default {
     return {
       title: "",
       description: "",
+      shortDescription: "",
+      preview: [],
     }
   },
   computed: {
@@ -42,7 +71,13 @@ export default {
   },
   methods: {
     async registration(){
-      return await this.$store.dispatch('forum/createPost', { name: this.user.name, title: this.title, description: this.description})
+      const formData = new formData();
+      formData.append('title', this.title)
+      formData.append('description', this.description)
+      formData.append('shortDescription', this.shortDescription)
+      formData.append('preview', this.preview)
+
+      return await this.$store.dispatch('forum/createPost', formData)
     }
   }
 };
@@ -50,17 +85,21 @@ export default {
 
 <style scoped>
   .new-post-container {
+    height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .card {
     margin-right: 200px;
-    box-shadow: 3px -6px 0px 6px black;;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 
-  .v-application a {
-    color: #000;
+  .cloud-upload {
+    font-size: 230px;
   }
 
 </style>

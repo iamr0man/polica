@@ -4,8 +4,13 @@ export default {
   async getPosts () {
     return await axios.get('/post/all')
   },
-  async createPost (name, title, description){
-    return await axios.post('/post', {name, title, description})
+  async createPost (formData){
+    let config = {
+      header : {
+       'Content-Type' : 'multipart/form-data'
+     }
+    }
+    return await axios.post('/post', formData, config)
   },
   // eslint-disable-next-line
   async deletePost (id) {

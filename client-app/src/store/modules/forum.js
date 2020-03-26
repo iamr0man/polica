@@ -21,8 +21,8 @@ export default {
         commit('SET_POSTS', data)
       }
     },
-    async createPost({ commit }, {name, title, description}) {
-      const { data } = await ForumApi.createPost(name, title, description);
+    async createPost({ commit }, {formData}) {
+      const { data } = await ForumApi.createPost(formData);
       if(data){
         commit('SET_POST', data)
       }
