@@ -1,6 +1,6 @@
 <template>
   <div class="new-post-container">
-    <v-card shaped class="card" width="700">
+    <v-card shaped class="card" width="480">
       <v-card-text>
         <v-text-field 
          outlined
@@ -28,13 +28,13 @@
          />
       </v-card-text>
       <v-card-actions>
-          <v-btn @click="registration" class="mx-auto" color="indigo" dark width="85%">Post</v-btn>
+          <v-btn @click="createNewPost" class="mx-auto" color="indigo" dark width="85%">Post</v-btn>
       </v-card-actions>
     </v-card> 
-    <v-card shaped class="card" width="700">
+    <v-card shaped class="card" width="420">
       <v-icon class="cloud-upload" color="indigo">mdi-cloud-upload</v-icon>
       <v-file-input
-        v-model="files"
+        v-model="preview"
         placeholder="Upload your preview photo"
         label="Photo input"
         multiple
@@ -64,20 +64,25 @@ export default {
       description: "",
       shortDescription: "",
       preview: [],
+      preset: "q8isaqyd"
     }
   },
   computed: {
     ...mapGetters('user', ['user'])
   },
   methods: {
-    async registration(){
-      const formData = new formData();
-      formData.append('title', this.title)
-      formData.append('description', this.description)
-      formData.append('shortDescription', this.shortDescription)
-      formData.append('preview', this.preview)
+    async createNewPost(){
+      const formData = new FormData();
+      formData.append('file', this.preview[0])
+      formData.append('upload_preset', this.preset)
+      const url = await this.$store.dispatch('forum/getPhoto', formData);
 
-      return await this.$store.dispatch('forum/createPost', formData)
+      return await this.$store.dispatch('forum/createPost', {
+        title: this.title,
+        shortDescription: this.shortDescription,
+        description: this.description,
+        preview: url,
+      })
     }
   }
 };
@@ -87,12 +92,11 @@ export default {
   .new-post-container {
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
   }
 
   .card {
-    margin-right: 200px;
     display: flex;
     justify-content: center;
     flex-direction: column;

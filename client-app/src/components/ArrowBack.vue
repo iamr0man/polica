@@ -20,6 +20,7 @@ export default {
 
 <style scoped>
   .button-back{
+    z-index: 1;
     position: fixed;
     top: 60px;
     left: 18px;
@@ -27,6 +28,6 @@ export default {
   }
 
   .arrow-back {
-    color: black !important;
+    color: rgba(0, 0, 0, 0.87) !important;
   }
 </style>

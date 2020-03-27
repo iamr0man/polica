@@ -4,6 +4,10 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 
+import ArrowBack from './components/ArrowBack.vue';
+
+Vue.component('arrow-back', ArrowBack)
+
 require("dotenv").config();
 
 import * as VueGoogleMaps from "vue2-google-maps";

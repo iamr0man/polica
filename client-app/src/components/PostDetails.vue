@@ -1,5 +1,8 @@
 <template>
   <div class="">
+    <div class="wrapper">
+      <arrow-back :to="to"/>
+    </div>
     <v-card class="post mx-auto" width="100%">
       <v-card-text>
         <div class="container">
@@ -20,10 +23,6 @@
                   v-for="i in 4"
                   :key="i"
                 />
-                <!-- <v-icon>mdi-arrow-collapse-left</v-icon>
-                <v-icon>mdi-arrow-collapse-left</v-icon>
-                <v-icon>mdi-arrow-collapse-left</v-icon>
-                <v-icon>mdi-arrow-collapse-left</v-icon> -->
               </div>
             </div>
             <div class="post-main">
