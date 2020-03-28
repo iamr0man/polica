@@ -1,9 +1,6 @@
 <template>
   <div class="card">
-    <!-- <canvas
-      ref="canvas"
-      id="canvas" /> -->
-    <canvas
+    <div
       ref="card-item" 
       class="card-item"
       @mousemove="startRotate($event)"
@@ -13,7 +10,7 @@
           class="book floating"
           src="../assets/img/fi.jpg"
         />
-    </canvas>
+    </div>
   </div>
 </template>
 
@@ -34,25 +31,6 @@ export default {
       this.$refs["card-item"].style.transform = 'rotate(0)'
     },
   },
-  mounted(){
-      debugger
-      const canvas = this.$refs['card-item'];
-      const ctx = canvas.getContext('2d');
-      const image = this.$refs['book'];
-
-      ctx.drawImage(image, 0, 0);
-
-      var imgd = ctx.getImageData(0, 0, canvas.width, canvas.hight);
-      var data = imgd.data;
-
-      for (var i = 0; i < data.length; i += 4) {
-        var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        data[i]     = avg; // red
-        data[i + 1] = avg; // green
-        data[i + 2] = avg; // blue
-      }
-      ctx.putImageData(imgd, 0, 0);
-    }
 }
 </script>
 
