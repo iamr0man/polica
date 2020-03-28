@@ -1,27 +1,27 @@
 <template>
   <gmap-map
-    :center="center"
-    :map-type-id="mapTypeId"
-    :zoom="5"
-    @rightclick="showNewMarker">
-      <gmap-marker 
-        v-for="(item, i) in points"
-        :position="{ lat: item.latitude, lng: item.longitude }"
-        :key="i"
-        @click="toggleInfoWindow(item,i)"
-      />
-      <expe
-        v-if="infoWinOpen"
-        @isInfoWinOpen="infoWinOpen = $event"
-        :infoWindow="infoWindow"
-        :infoWinOpen="infoWinOpen"
-      />
-      <new-expe
-        v-if="createWinOpen"
-        @isCreatedWinOpen="createWinOpen = $event"
-        :newMarker="newMarker"
-        :createWinOpen="createWinOpen" />
-    </gmap-map>
+  :center="center"
+  :map-type-id="mapTypeId"
+  :zoom="5"
+  @rightclick="showNewMarker">
+    <gmap-marker 
+      v-for="(item, i) in points"
+      :position="{ lat: item.latitude, lng: item.longitude }"
+      :key="i"
+      @click="toggleInfoWindow(item,i)"
+    />
+    <expe
+      v-if="infoWinOpen"
+      @isInfoWinOpen="infoWinOpen = $event"
+      :infoWindow="infoWindow"
+      :infoWinOpen="infoWinOpen"
+    />
+    <new-expe
+      v-if="createWinOpen"
+      @isCreatedWinOpen="createWinOpen = $event"
+      :newMarker="newMarker"
+      :createWinOpen="createWinOpen" />
+  </gmap-map>
 </template>
 
 <script>
@@ -37,6 +37,7 @@ export default {
   },
   data(){
     return {
+      to: '../',
       center: { lat: 50, lng: 30 },
       mapTypeId: "terrain",
       infoWindow: {},

@@ -11,7 +11,7 @@ export default {
   name: "ArrowBack",
   props: {
     to: {
-      type: String,
+      type: Object,
       required: true
     }
   },

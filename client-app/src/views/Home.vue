@@ -2,8 +2,8 @@
   <div class="home-container">
       <div class="centered ">
         <div class="centered circle">
-            <router-link class="router-links" to="/">
-              <p>download</p>
+            <router-link class="router-links" to="/books">
+              <p>books</p>
             </router-link>
           </div>
           <div class="centered rectangle">
