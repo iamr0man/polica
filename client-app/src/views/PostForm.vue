@@ -73,9 +73,9 @@ export default {
   methods: {
     async createNewPost(){
       const formData = new FormData();
-      formData.append('file', this.preview[0])
       formData.append('upload_preset', this.preset)
-      const url = await this.$store.dispatch('forum/getPhoto', formData);
+      formData.append('file', this.preview[0])
+      const url = await this.$store.dispatch('forum/getPhoto', { formData, id: '5556' });
 
       return await this.$store.dispatch('forum/createPost', {
         title: this.title,

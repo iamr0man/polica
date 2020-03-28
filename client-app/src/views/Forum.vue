@@ -11,6 +11,7 @@
     <router-link :to="{ name: 'PostForm' }" class="add-new">
       Add
     </router-link>
+    <arrow-back :to="{ name: 'Home' }" />
   </div>
 </template>
 

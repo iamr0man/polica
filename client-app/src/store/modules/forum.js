@@ -23,11 +23,10 @@ export default {
     },
     // eslint-disable-next-line
     async getPhoto({ commit }, {formData}) {
-      const { data } = await ForumApi.getPhoto(formData);
-      return data.secure_url;
+      return await ForumApi.getPhoto(formData);
     },
-    async createPost({ commit }, {formData}) {
-      const { data } = await ForumApi.createPost(formData);
+    async createPost({ commit }, {title, shortDescription, description, preview}) {
+      const { data } = await ForumApi.createPost(title, shortDescription, description, preview);
       if(data){
         commit('SET_POST', data)
       }

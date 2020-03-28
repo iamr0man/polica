@@ -4,19 +4,17 @@ export default {
   async getPosts () {
     return await axios.get('/post/all')
   },
-  async getPhoto(){
-    const url = 'https://api.cloudinary.com/v1_1/dd1zwnjkj/upload'
-    const { data } = await axios({
-      baseURL: url,
+  async getPhoto(formData){
+    const url = 'https://api.cloudinary.com/v1_1/dd1zwnjkj/image/upload';
+    const res = await fetch(url,{
       method: "POST",
-      headers: {
-        'Content-Type' : 'application/x-www-form-urlencoded'
-      }
+      body: formData
     })
-    return data;
+    const { secure_url } = await res.json();
+    return secure_url;
   },
   async createPost (title, description, shortDescription, preview){
-    return await axios.post('/post', title, description, shortDescription, preview)
+    return await axios.post('/post', title, shortDescription, description, preview)
   },
   // eslint-disable-next-line
   async deletePost (id) {

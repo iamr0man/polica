@@ -1,8 +1,6 @@
 <template>
   <div class="">
-    <div class="wrapper">
-      <arrow-back :to="to"/>
-    </div>
+    <arrow-back :to="{ name: 'Home' }" />
     <v-card class="post mx-auto" width="100%">
       <v-card-text>
         <div class="container">
@@ -49,11 +47,6 @@ export default {
   name: "PostDetails",
   components: {
     PostIcon
-  },
-  data(){
-    return{
-      to: '../../forum'
-    }
   },
   computed: {
     ...mapGetters('user', ['user']),
