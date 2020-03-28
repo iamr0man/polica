@@ -2,13 +2,15 @@
   <div class="card">
     <div
       ref="card-item" 
-      class="card-item"
+      class="card-item text-center"
       @mousemove="startRotate($event)"
       @mouseout="stopRotate($event)">
+        <p>{{ book.title }}</p>
+        <p>{{ book.author }}</p>
         <img
           ref="book"
           class="book floating"
-          src="../assets/img/fi.jpg"
+          :src="book.logo"
         />
     </div>
   </div>
@@ -16,6 +18,12 @@
 
 <script>
 export default {
+  props: {
+    book: {
+      type: Object,
+      required: true
+    }
+  },
   methods: {
     startRotate(e) {
       const cardItem = this.$refs["card-item"];
@@ -34,7 +42,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
 .floating {  
   animation-name: floating;
@@ -46,14 +54,16 @@ export default {
 }
 
 .card {
-  perspective: 1000px; /*глубина - расстаяние внутри*/
+  margin-top: -250px;
+  perspective: 1365px; /*глубина - расстаяние внутри*/
   transform-style: preserve-3d; /*прокучивание 3Д*/
 }
 
 .card-item {
-  border: 1px solid black;
-  width: 200px;
-  height: 240px;
+  border: 1px solid white;
+  color: white;
+  width: 260px;
+  height: 140px;
   transition: transform 0.2s;
   margin: 1rem;
 }
