@@ -1,20 +1,36 @@
 <template>
-    <div class="book floating">
-      <v-img src="../assets/img/fi.jpg" />
+  <div class="card"
+      @mousemove="rotateCard($event)"
+      @mouseout="refreshCard($event)"
+    >
+      <img 
+        class="card-item"
+        src="../assets/img/fi.jpg" />
     </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    rotateCard(e) {
+      const cardItem = e.target;
 
+      const halfHeight = cardItem.offsetHeight/2;
+      const halfWidth = cardItem.offsetWidth/2;
+
+      cardItem.style.transform = 'rotateX(' + -(e.offsetY -
+        halfHeight) / 5 +'deg) rotateY(' +
+        (e.offsetX - halfWidth) / 5 + 'deg';
+    },
+    refreshCard(e){
+      const cardItem = e.target;
+      cardItem.style.transform = `rotate(0)`
+    }
+  },
 }
 </script>
 
 <style>
-
-.book {
-  width: 200px;
-}
 
 .floating {  
     animation-name: floating;
@@ -23,6 +39,19 @@ export default {
     animation-timing-function: ease-in-out;
     margin-left: 30px;
     margin-top: 5px;
+}
+
+.card {
+    perspective: 1000px; /*глубина - расстаяние внутри*/
+    transform-style: preserve-3d; /*прокучивание 3Д*/
+}
+
+.card-item {
+    background-color: #fff;
+    width: 250px;
+    height: 400px;
+    transition: transform 0.2s;
+    margin: 1rem;
 }
 
 @keyframes floating {

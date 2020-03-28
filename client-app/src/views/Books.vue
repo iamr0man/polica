@@ -17,6 +17,7 @@ export default {
 
 <style lang="scss">
   .books-container {
+    background-color: teal;
     display: flex;
     flex-wrap: wrap;
   }
