@@ -1,58 +1,89 @@
 <template>
-  <div class="card"
-      @mousemove="rotateCard($event)"
-      @mouseout="refreshCard($event)"
-    >
-      <img 
-        class="card-item"
-        src="../assets/img/fi.jpg" />
-    </div>
+  <div class="card">
+    <!-- <canvas
+      ref="canvas"
+      id="canvas" /> -->
+    <canvas
+      ref="card-item" 
+      class="card-item"
+      @mousemove="startRotate($event)"
+      @mouseout="stopRotate($event)">
+        <img
+          ref="book"
+          class="book floating"
+          src="../assets/img/fi.jpg"
+        />
+    </canvas>
+  </div>
 </template>
 
 <script>
 export default {
   methods: {
-    rotateCard(e) {
-      const cardItem = e.target;
+    startRotate(e) {
+      const cardItem = this.$refs["card-item"];
 
       const halfHeight = cardItem.offsetHeight/2;
       const halfWidth = cardItem.offsetWidth/2;
 
       cardItem.style.transform = 'rotateX(' + -(e.offsetY -
         halfHeight) / 5 +'deg) rotateY(' +
-        (e.offsetX - halfWidth) / 5 + 'deg';
+        (e.offsetX - halfWidth) / 5 + 'deg)';
     },
-    refreshCard(e){
-      const cardItem = e.target;
-      cardItem.style.transform = `rotate(0)`
-    }
+    stopRotate(){
+      this.$refs["card-item"].style.transform = 'rotate(0)'
+    },
   },
+  mounted(){
+      debugger
+      const canvas = this.$refs['card-item'];
+      const ctx = canvas.getContext('2d');
+      const image = this.$refs['book'];
+
+      ctx.drawImage(image, 0, 0);
+
+      var imgd = ctx.getImageData(0, 0, canvas.width, canvas.hight);
+      var data = imgd.data;
+
+      for (var i = 0; i < data.length; i += 4) {
+        var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        data[i]     = avg; // red
+        data[i + 1] = avg; // green
+        data[i + 2] = avg; // blue
+      }
+      ctx.putImageData(imgd, 0, 0);
+    }
 }
 </script>
 
 <style>
 
 .floating {  
-    animation-name: floating;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    margin-left: 30px;
-    margin-top: 5px;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  margin-left: 30px;
+  margin-top: 5px;
 }
 
 .card {
-    perspective: 1000px; /*глубина - расстаяние внутри*/
-    transform-style: preserve-3d; /*прокучивание 3Д*/
+  perspective: 1000px; /*глубина - расстаяние внутри*/
+  transform-style: preserve-3d; /*прокучивание 3Д*/
 }
 
 .card-item {
-    background-color: #fff;
-    width: 250px;
-    height: 400px;
-    transition: transform 0.2s;
-    margin: 1rem;
+  border: 1px solid black;
+  width: 200px;
+  height: 240px;
+  transition: transform 0.2s;
+  margin: 1rem;
 }
+
+.book {
+  width: 190px;
+}
+
 
 @keyframes floating {
   from { 
