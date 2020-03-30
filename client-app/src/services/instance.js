@@ -2,7 +2,7 @@ import axios from "axios";
 import router from '../router/index'
 
 const apiClient = axios.create({
-  baseURL: `http://localhost:5000/api`,
+  baseURL: `http://localhost:5001/api`,
   withCredentials: false, // This is the default
   headers: {
     "Content-Type": "application/json",

@@ -5,13 +5,13 @@
       class="card-item text-center"
       @mousemove="startRotate($event)"
       @mouseout="stopRotate($event)">
-        <p>{{ book.title }}</p>
-        <p>{{ book.author }}</p>
+        <p class="mar text">{{ book.title }}</p>
         <img
           ref="book"
           class="book floating"
           :src="book.logo"
         />
+        <p class="mar text">{{ book.author }}</p>
     </div>
   </div>
 </template>
@@ -63,15 +63,35 @@ export default {
   border: 1px solid white;
   color: white;
   width: 260px;
-  height: 140px;
+  height: 420px;
   transition: transform 0.2s;
   margin: 1rem;
+  overflow: hidden;
+}
+.text{
+  width: 150%;
+}
+
+.mar {
+  animation-name: mar;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .book {
   width: 190px;
 }
 
+@keyframes mar {
+
+  from{
+    transform: translate3d(0, 0, 0)
+  }
+  to {
+    transform: translate3d(-100%,0,0)
+  }
+}
 
 @keyframes floating {
   from { 
