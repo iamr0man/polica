@@ -1,4 +1,4 @@
-import axios from "./instance";
+import axios from "axios";
 
 export default {
   async getPosts () {
@@ -14,7 +14,8 @@ export default {
     return secure_url;
   },
   async createPost (title, description, shortDescription, preview){
-    return await axios.post('/post', title, shortDescription, description, preview)
+    debugger
+    return await axios.post('/post', { title, shortDescription, description, preview })
   },
   // eslint-disable-next-line
   async deletePost (id) {

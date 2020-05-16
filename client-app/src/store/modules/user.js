@@ -1,4 +1,5 @@
 import { UserApi } from "../../services/index";
+import setAuthToken from '../../plugins/setAuthToken'
 import router from '../../router/index'
 
 export default {
@@ -28,20 +29,19 @@ export default {
 
       if(data) {
         commit('SET_USER', data.user)
-        localStorage.setItem('token', data.token)
-        router.push('/')
+        setAuthToken(data.token)
+        router.push({ path: '/', name: "Home" })
       }
     },
     async doLogin({ commit }, { email, password }) {
       const { data } = await UserApi.doLogin(email, password);
       
       if(data){
+        debugger
         commit('SET_USER', data.user)
-        localStorage.setItem('token', '')
-        localStorage.setItem('token', data.token)
-        router.push('/')
+        setAuthToken(data.token)
+        router.push({ path: '/' })
       }
-      router.push
     },
     // eslint-disable-next-line
     logout({ commit }) {
