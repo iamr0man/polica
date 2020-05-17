@@ -40,7 +40,6 @@ export default {
   },
   watch: {
     currNumber(){
-      debugger
       this.$refs['hide-wrapper'].children[this.currNumber].classList.add('blow-mind')
       this.$refs['hide-wrapper'].children[this.currNumber].style.x = this.currPosition.x
       this.$refs['hide-wrapper'].children[this.currNumber].style.y = this.currPosition.y

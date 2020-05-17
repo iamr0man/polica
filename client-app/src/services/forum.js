@@ -14,7 +14,6 @@ export default {
     return secure_url;
   },
   async createPost (title, description, shortDescription, preview){
-    debugger
     return await axios.post('/post', { title, shortDescription, description, preview })
   },
   // eslint-disable-next-line
