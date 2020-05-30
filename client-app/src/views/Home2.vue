@@ -2,6 +2,17 @@
   <div class="home">
     <h1 class="home__header">ALL WE ART</h1>
     <Planets />
+    <div class="nav-panel">
+      <router-link class="router-links" to="/books">
+        <p>books</p>
+      </router-link>
+      <router-link class="router-links" to="/forum">
+        <p>forum</p>
+      </router-link>
+      <router-link class="router-links" to="/map">
+        <p class="router-links-points">points</p>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -38,6 +49,18 @@ export default {
 
       path {
         fill: #FFFF66;
+      }
+    }
+    .nav-panel {
+      display: flex;
+      justify-content: space-between;
+      .router-links {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 20px;
+        margin: 0 20px;
+        cursor: pointer;
       }
     }
   }

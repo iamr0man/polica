@@ -19,7 +19,6 @@ export default {
         return getters.user;
       }
 
-      debugger
       const data = localStorage.getItem('user') || null;
       if(data){
         commit('SET_USER', JSON.parse(data))
@@ -41,7 +40,6 @@ export default {
       const { data } = await UserApi.doLogin(email, password);
       
       if(data){
-        debugger
         // commit('SET_USER', JSON.stringify(data.user))
         localStorage.setItem('user', JSON.stringify(data.user))
         setAuthToken(data.token)

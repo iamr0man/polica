@@ -1,27 +1,33 @@
 <template>
-  <gmap-map
-  :center="center"
-  :map-type-id="mapTypeId"
-  :zoom="5"
-  @rightclick="showNewMarker">
-    <gmap-marker 
-      v-for="(item, i) in points"
-      :position="{ lat: item.latitude, lng: item.longitude }"
+  <div class="map-wrapper">
+    <acid class="map-background" />
+    <gmap-map
+      v-for="(v,i) in 6"
+      :center="center"
+      :map-type-id="mapTypeId"
+      :zoom="5"
+      @rightclick="showNewMarker"
       :key="i"
-      @click="toggleInfoWindow(item,i)"
-    />
-    <expe
-      v-if="infoWinOpen"
-      @isInfoWinOpen="infoWinOpen = $event"
-      :infoWindow="infoWindow"
-      :infoWinOpen="infoWinOpen"
-    />
-    <new-expe
-      v-if="createWinOpen"
-      @isCreatedWinOpen="createWinOpen = $event"
-      :newMarker="newMarker"
-      :createWinOpen="createWinOpen" />
-  </gmap-map>
+      >
+      <gmap-marker 
+        v-for="(item, i) in points"
+        :position="{ lat: item.latitude, lng: item.longitude }"
+        :key="i"
+        @click="toggleInfoWindow(item,i)"
+      />
+      <expe
+        v-if="infoWinOpen"
+        @isInfoWinOpen="infoWinOpen = $event"
+        :infoWindow="infoWindow"
+        :infoWinOpen="infoWinOpen"
+      />
+      <new-expe
+        v-if="createWinOpen"
+        @isCreatedWinOpen="createWinOpen = $event"
+        :newMarker="newMarker"
+        :createWinOpen="createWinOpen" />
+    </gmap-map>
+  </div>
 </template>
 
 <script>
@@ -29,17 +35,19 @@
 import { mapGetters } from 'vuex'
 import NewExpe from '../components/NewExpe.vue'
 import Expe from '../components/Expe.vue'
+import Acid from '../components/Acid.vue'
 
 export default {
   components: {
     NewExpe,
-    Expe
+    Expe,
+    Acid
   },
   data(){
     return {
       to: '../',
       center: { lat: 50, lng: 30 },
-      mapTypeId: "terrain",
+      mapTypeId: "roadmap",
       infoWindow: {},
       newMarker: { position: { lat: 0, lng: 0}},
       createWinOpen: false,
@@ -81,12 +89,25 @@ export default {
 
 </script>
   
-<style scoped>
-  .vue-map-container {
-    height: 100%;
-    width: 100%;
-  }
-  .window {
-    width: 30%;
+<style lang="scss" scoped>
+  .map-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .map-background {
+      position: absolute;
+    }
+
+    .vue-map-container {
+      z-index: 7;
+      margin: 50px auto;
+      width: 500px;
+      height: 700px;
+      box-shadow: 0px 20px 10px 10px black;
+    }
+    .window {
+      width: 30%;
+    }
   }
 </style>

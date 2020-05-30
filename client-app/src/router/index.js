@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-// import Home2 from "../views/Home2.vue";
+// import Home from "../views/Home.vue";
+import Home2 from "../views/Home2.vue";
 import Login from "../views/Login.vue";
 import Registration from "../views/Registration.vue";
 import Map from "../views/Map.vue";
@@ -17,7 +17,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: Home2,
   },
   {
     path: "/login",
@@ -73,16 +73,16 @@ const router = new VueRouter({
 });
 
 // eslint-disable-next-line
-router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/registration']
-  const authRequied = !publicPages.includes(to.path);
-  const loggeIn = localStorage.getItem('user')
+// router.beforeEach((to, from, next) => {
+//   const publicPages = ['/login', '/registration']
+//   const authRequied = !publicPages.includes(to.path);
+//   const loggeIn = localStorage.getItem('user')
 
-  if(authRequied && !loggeIn) {
-    next('/login')
-  } else {
-    next();
-  }
-})
+//   if(authRequied && !loggeIn) {
+//     next('/login')
+//   } else {
+//     next();
+//   }
+// })
 
 export default router;

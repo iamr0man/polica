@@ -4,6 +4,7 @@
       v-for="(post, i) in posts"
       :post="post"
       :key="i"/>
+    <sculpture />
     <router-link :to="{ name: 'PostForm' }" class="add-new">
       Add
     </router-link>
@@ -15,11 +16,13 @@
 
 import { mapGetters } from 'vuex'
 import Post2 from '../components/Post2.vue'
+import Sculpture from '../components/Sculpture.vue'
 
 export default {
   name: 'Forum2',
   components: {
-    Post2
+    Post2,
+    Sculpture
   },
   computed: {
     ...mapGetters('forum', ['posts'])
