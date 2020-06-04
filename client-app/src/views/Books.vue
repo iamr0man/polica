@@ -28,7 +28,8 @@ export default {
     return {
       prevPosition: {x: 0, y:0},
       currPosition: {x: 0, y:0},
-      currNumber: -1
+      currNumber: -1,
+      vector: "X"
     }
   },
   methods: {
