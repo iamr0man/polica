@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "start": "node server.js",
     "dev": "concurrently \"nodemon server\" \"yarn --cwd ./client-app serve\""
   },
   "dependencies": {
