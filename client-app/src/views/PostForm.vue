@@ -51,6 +51,7 @@
       </template>
     </v-file-input>
     </v-card> 
+    <arrow-back :to="{ name: 'Home' }" />
   </div>
 </template>
 

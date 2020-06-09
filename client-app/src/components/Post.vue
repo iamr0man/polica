@@ -1,5 +1,5 @@
 <template>
-    <v-card @click="showPostDetails"  class="post">
+    <v-card @click="showPostDetails" class="post mt-8">
       <v-card-text>
         <v-row>
           <v-col cols="8">

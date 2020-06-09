@@ -5,6 +5,7 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 
 import ArrowBack from './components/ArrowBack.vue';
+import './utils/utils.js'
 
 Vue.component('arrow-back', ArrowBack)
 
@@ -12,7 +13,7 @@ require("dotenv").config();
 
 import * as VueGoogleMaps from "vue2-google-maps";
 Vue.use(VueGoogleMaps, {
-  load: { key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY }
+  load: { key: '' }
 });
 
 Vue.config.productionTip = false;

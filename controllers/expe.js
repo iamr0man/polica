@@ -13,24 +13,25 @@ exports.getAllPoints = async(req, res) => {
 }
 
 exports.createPoint = async(req, res) => {
-  
   const errors = validationResult(req);
   if(!errors.isEmpty()){
     return res.status(400).json({ errors: errors.array() })
   }
-  
+  console.log("work in ready");
   const { latitude, longitude, title, description, emoji } = req.body;
   try{
-    const user = await User.findById(req.user.id).select('-password') 
-    const newExpe = await Expe.create({
-      user: user.id,
-      latitude,
-      longitude,
-      title,
-      description,
-      emoji
-    });
-    res.status(201).json({ newExpe });
+      const user = await User.findById(req.user.id).select('-password') 
+      console.log(user);
+      const newExpe = await Expe.create({
+        user: user.id,
+        latitude,
+        longitude,
+        title,
+        description,
+        emoji
+      });
+      console.log(newExpe);
+      res.json({ newExpe });
     } catch (err) {
       console.error(err.message)
       res.status(500).send('Server error')

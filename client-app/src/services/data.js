@@ -1,4 +1,4 @@
-import axios from "./instance";
+import axios from "axios";
 
 export default {
   async getPoints () {

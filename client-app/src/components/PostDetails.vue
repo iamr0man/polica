@@ -25,7 +25,7 @@
             </div>
             <div class="post-main">
               <div class="post-main__preview">
-                <v-img src="../assets/img/post.jpg" alt="preview" />
+                <v-img :src="post.preview" alt="preview" />
               </div>
               <div class="post-main__description">
                 {{ post.description }}

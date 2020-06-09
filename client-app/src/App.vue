@@ -11,6 +11,11 @@ export default {
 </script>
 
 <style>
+  @font-face {
+    font-family: 'Hagrid';
+    src: url('./assets/fonts/Hagrid-Text-Extrabold-trial.ttf');
+    font-weight: bolder;
+  }
   #app {
     font-family: 'Montserrat', sans-serif;
   }

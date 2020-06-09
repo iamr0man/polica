@@ -16,11 +16,11 @@ router.get('/all', getAllPoints)
 //@access   Public
 router.post('/', [
   auth,
-  check("latitude", ""),
-  check("longitude", ""),
-  check("title", "").not().isEmpty(),
-  check("description", ""),
-  check("emoji", ""),
+  // check("latitude", ""),
+  // check("longitude", ""),
+  // check("title", "").not().isEmpty(),
+  // check("description", ""),
+  // check("emoji", ""),
 ], createPoint)
 
 //@route    PUT api/expe/like/:id
